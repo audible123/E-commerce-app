@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import {getauth} from 'firebase/auth'
+import {getAuth} from 'firebase/auth'
 
 
 const firebaseConfig = {
@@ -12,6 +12,6 @@ const firebaseConfig = {
   databaseURL:"https://app-d76c8-default-rtdb.firebaseio.com"
 };
 
-const auth = getauth(app)
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
 export {auth}
