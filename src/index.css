@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.home{
+  background: linear-gradient(45Deg,rgba(238, 195, 95,0.5),black),url(https://png.pngtree.com/thumb_back/fh260/background/20210424/pngtree-food-and-packaging-online-shopping-delivery-service-truck-delivery-service-background-image_662111.jpg);
+  
+  background-size: cover;
+  background-position: center;
+}
