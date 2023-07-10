@@ -40,7 +40,7 @@ function Product(props) {
   }
 
   return (
-    <div className='bg-white  w-52 m-2 h-96'>
+    <div className='bg-white  w-52 m-2 h-96 shadow-2xl'>
     <Data {...props}/>
     <div className="flex justify-evenly flex-col">
     <button 

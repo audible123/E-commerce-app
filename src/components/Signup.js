@@ -27,8 +27,9 @@ const SignUP = () => {
   if(validatePassword()) {
     // Create a new user with email and password using firebase
       createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-          console.log(res.user)
+      .then((userCredential) => {
+          const loginUser = userCredential.user
+          console.log({loginUser});
         })
       .catch(err => setError(err.message))
   }
@@ -39,15 +40,21 @@ const SignUP = () => {
 
 
   return (
-    <div className='flex justify-center items-center h-[70vh]'>
-    <div className='auth shadow-2xl h-96'>
-      <h1>SignUp</h1>
+    <div className='page flex justify-center items-center h-[100vh]'>
+    <div className='auth shadow-2xl h-auto bg-white'>
+      <h1 
+      className="font-bold text-2xl">
+        SignUp</h1>
       {error && <div className='auth__error'>{error}</div>}
+
+      <div 
+      className="mt-12">
       <form onSubmit={handleSubmit} name='registration_form'>
         <input 
           type='email' 
           value={email}
           placeholder="Enter your email"
+          className="shadow-xl"
           required
           onChange={e => setEmail(e.target.value)}/>
 
@@ -55,12 +62,14 @@ const SignUP = () => {
           type='password'
           value={password} 
           required
+          className="shadow-xl"
           placeholder='Enter your password'
           onChange={e => setPassword(e.target.value)}/>
 
           <input 
           type='password'
           value={confirmPassword} 
+          className="shadow-xl"
           required
           placeholder='Confirm password'
           onChange={e => setConfirmPassword(e.target.value)}/>
@@ -68,6 +77,9 @@ const SignUP = () => {
         <button type='submit'
         className="bg-[#cd9042]">Register</button>
       </form>
+      </div>
+
+
       <span className="text-xs">
         Already have an account?  
         <Link 

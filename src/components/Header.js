@@ -3,6 +3,7 @@ import { FaSearch,FaAmazon } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { AMAZON_LOGO } from '../utils/constants';
 
 
 function Header() {
@@ -17,7 +18,7 @@ function Header() {
         <Link to='/'>
         <img 
         className='h-8 m-2'
-        src="https://w7.pngwing.com/pngs/911/623/png-transparent-amazon-com-amazon-alexa-retail-amazon-prime-order-fulfillment-amazon-miscellaneous-company-text-thumbnail.png" 
+        src={AMAZON_LOGO}
         alt="amazon" />
         </Link>
 
