@@ -2,6 +2,9 @@ import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+import { useDispatch } from "react-redux";
+import { updateuser } from "../utils/DataSlice";
+
 
 
 
@@ -11,13 +14,17 @@ const Login =()=>{
     const[error,setError]=useState("")
 
 
+    const dispatch = useDispatch();
+
+
     function handleSubmit(e){
         e.preventDefault();
         setError('')
         signInWithEmailAndPassword(auth,email,password)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log({user});
+            user.displayName = "John" ;
+            dispatch(updateuser(user));
         }
         )
         .catch( err => setError(err.message))

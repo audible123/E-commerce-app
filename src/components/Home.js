@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Product from './Product';
 import { Link } from 'react-router-dom';
+import ProductCard from './ProductCard';
 
 function Home() {
   let scrl = useRef(null);
@@ -69,8 +69,8 @@ function Home() {
       </h1>
       <div className="flex flex-wrap justify-evenly">
         {result && result.map((item) => (
-          <Link key={item?.id}>
-            <Product {...item} />
+          <Link to={"/" + item?.id} key={item?.id}>
+            <ProductCard {...item} />
           </Link>
         ))}
       </div>

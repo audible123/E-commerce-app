@@ -1,56 +1,42 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { addItem, buy } from '../utils/CartSlice';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-function Data({
-  id,
-  title,
-  image,
-  price,
-  description,
-  category,
-}){
-  return (
-    <>
-    <img 
-        className='h-[50%] w-[70%] mx-7'
-        src={image} alt="image" />
-        <div 
-        className='text-xs m-2'>
-          <h1 
-          className='font-bold'>{title}</h1>
-        <h1>Price-${price}</h1>
-        <h1 
-        className='font-bold'>{category}</h1>
-        </div>
-</>
-  )
-}
+function Product() {
 
-function Product(props) {
+    const [product,setproduct] = useState();
 
-  const dispatch = useDispatch();
+    const {id} = useParams();
 
-  const handleClick=(props)=>{
-    dispatch(addItem(props))
-  }
-  
-  const handleBuy=(props)=>{
-    dispatch(buy(props))
-  }
+    const getproductinfo = async () => {
+        const data = await fetch(`https://fakestoreapi.com/products/${id}`)
+        const json = await data.json();
+        setproduct(json);
+    }
+
+    useEffect(()=>{
+        getproductinfo();
+    },[])
 
   return (
-    <div className='bg-white  w-52 m-2 h-96 shadow-2xl'>
-    <Data {...props}/>
-    <div className="flex justify-evenly flex-col">
-    <button 
-    className="shadow-lg  border border-[#ffd814] p-1  w-[95%] m-1 bg-[#ffd814] " 
-    onClick={()=>{handleClick(props)}}>Add </button>
-    <button 
-    className="shadow-lg bg-[#ffa41c] p-1  w-[95%] m-1  " 
-    onClick={()=>{handleBuy(props)}}>Buy Now</button>
+    <div className='bg-white h-[100vh]'>
+        <div className="hero min-h-screen bg-primary-content">
+        <div className="hero-content flex-col lg:flex-row">
+        <img src={product?.image} />
+    <div>
+      <h1 className="text-5xl font-bold my-2">{product?.title}</h1>
+      <h1 className="text-3xl font-bold my-2">${product?.price}</h1>
+      <p className='font-bold border border-gray-600 inline rounded-lg p-1 my-2'>{product?.category}</p>
+      <p className="py-6 my-2">{product?.description}</p>
+        
+      <div className='flex'>
+      <button className="btn btn-primary mx-2 h-10 w-52">Buy Now</button>
+      <button className="btn btn-info mx-2 h-10 w-52">Add to Cart</button>
+      </div>
+      
     </div>
+  </div>
 </div>
+    </div>
   )
 }
 

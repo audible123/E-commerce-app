@@ -1,56 +1,70 @@
-import React from 'react'
-import { FaSearch,FaAmazon } from "react-icons/fa";
-import { FiShoppingCart } from "react-icons/fi";
+import React, { useState } from 'react';
+import { FaSearch, FaAmazon } from 'react-icons/fa';
+import { FiShoppingCart } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AMAZON_LOGO } from '../utils/constants';
+import Header_2 from './Header_2';
+import { MdSentimentSatisfiedAlt} from "react-icons/md";
+
 
 
 function Header() {
+  const user = useSelector((store) => store.data.user);
 
-  const data = useSelector((store) => store.cart.item)
+  console.log({user});
 
-  console.log({data})
+  const data = useSelector((store) => store.cart.item);
 
   return (
-    <div className='grid grid-cols-4 bg-[#131921] h-12'>
+    <>
+    <div 
+    className="navbar bg-[#131921] ">
+  <div 
+  className="flex-1">
+    <img 
+    className='h-8 m-2' 
+    src={AMAZON_LOGO}/>
+  </div>
+  <div 
+  className="flex-none gap-2">
+    <div 
+    className="form-control">
+      <input 
+      type="text" 
+      placeholder="Search" 
+      className="input input-bordered w-96 md:w-auto" />
+    </div>
 
-        <Link to='/'>
-        <img 
-        className='h-8 m-2'
-        src={AMAZON_LOGO}
-        alt="amazon" />
-        </Link>
+    <div 
+    className="dropdown dropdown-end">
+      <label 
+      tabIndex={0} 
+      className="btn btn-ghost btn-circle avatar">
 
         <div 
-        className='col-span-2'>
-            <input
-            className='my-2 p-1 w-[70%] text-lg'
-            type="text" />
-            <button
-            className='bg-[#cd9042] px-[8px] my-1 rounded-r-md text-xs'>
-              <FaSearch/></button>
+        className="w-10 rounded-full">
+          <img 
+          src="https://www.computerhope.com/jargon/g/guest-user.png" />
         </div>
-
-        <div className='text-white grid grid-cols-4'>
-          <Link to='/login'>
-            <h1 
-            className='m-3 text-[17px]'
-            >Login</h1>
-          </Link>
-            <h1 
-            className='text-[17px] leading-tight'
-            >Returns & Orders</h1>
-            <h1 
-            className='mx-3 p-1'
-            ><FaAmazon/>Prime</h1>
-            <div 
-            className='m-3 text-white flex flex-col'
-            ><FiShoppingCart/> {data.length}</div>
-        </div>
-
+      </label>
+      <ul 
+      tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+        <li>
+          <a className="justify-between">
+            Profile
+            <span className="badge">New</span>
+          </a>
+        </li>
+        <li><a>Settings</a></li>
+        <li><a>Logout</a></li>
+      </ul>
     </div>
-  )
+  </div>
+</div>
+<Header_2/>
+</>
+  );
 }
 
-export default Header
+export default Header;

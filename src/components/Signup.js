@@ -59,6 +59,14 @@ const SignUP = () => {
           onChange={e => setEmail(e.target.value)}/>
 
         <input 
+          type='email' 
+          value={email}
+          placeholder="Enter your email"
+          className="shadow-xl"
+          required
+          onChange={e => setEmail(e.target.value)}/>
+
+        <input 
           type='password'
           value={password} 
           required
