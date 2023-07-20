@@ -1,6 +1,9 @@
 import React from 'react'
 import CartCard from './CartCard';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { buy, clearcart } from '../utils/CartSlice';
+import useTotalPrice from '../utils/useTotalPrice';
 
 
 export function CancelPolicy(){
@@ -15,30 +18,64 @@ export function CancelPolicy(){
 
 export function Price(){
   return (
-    <div></div>
+    <div className="overflow-x-auto mt-12">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr>
+        <th></th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {/* row 1 */}
+      <tr>
+        <td>Item Total</td>
+        <td></td>
+      </tr>
+      {/* row 2 */}
+      <tr>
+        <td>Delivery partner fee</td>
+        <td>Purple</td>
+      </tr>
+      {/* row 3 */}
+      <tr>
+        <td>GST</td>
+        <td>Red</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
   )
 }
 
 export function Cart() {
-
-  const cartItem = 0;
-
+  
+  const dispatch = useDispatch();
+  const cartItem = useSelector(store => store.cart.item);
+  
+  const value = useTotalPrice(cartItem);
+  
+  dispatch(buy(value));
+  
   function handleClearCart(){
-    // add dispatching an action
+    dispatch(clearcart());
   }
 
-  // if(cartItem.length === 0) return (
-  //   <div className="flex justify-center items-center">
-  //   <div className="min-h-[70vh] mt-32">
-  //     <img className="h-[250px] w-auto mb-4 mx-auto" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0" alt="Error" />
-  //     <h1 className="text-4xl text-center">Your cart is empty</h1>
-  //     <h3 className='text-center'>You can go to home page to view more restaurants</h3>
-  //     <Link to="/">
-  //     <button className=' h-14 w-[90%] m-5 bg-[#fc8019] text-white'>SEE RESTAURANTS NEAR YOU</button>
-  //     </Link>
-  //   </div>
-  //   </div>
-  // )
+
+
+
+  if(cartItem.length === 0) return (
+    <div className="flex justify-center items-center bg-white">
+    <div className="min-h-[70vh] mt-32">
+      <img className="h-[250px] w-auto mb-4 mx-auto" src="https://img.freepik.com/premium-vector/shopping-cart-with-cross-mark-wireless-paymant-icon-shopping-bag-failure-paymant-sign-online-shopping-vector_662353-912.jpg" alt="Error" />
+      <h1 className="text-4xl text-center">Your cart is empty</h1>
+      <Link to="/">
+      <button className=' h-14 w-[90%] m-5 bg-[#eb9d5e] text-white'>Return to Home</button>
+      </Link>
+    </div>
+    </div>
+  )
 
   return (
     <div className='min-h-screen m-4 flex flex-wrap flex-col bg-gray-200'>
@@ -49,7 +86,11 @@ export function Cart() {
     }}>Clear Cart</button>
     <div className='max-sm:p-12'>
     <div className='flex flex-wrap flex-row '>
-        {/* here add the cards */}
+        {cartItem.map((item)=>(
+          <div key={item?.id}>
+            <CartCard {...item}/>
+          </div>
+        ))}
     </div>
     </div>
     <div className='grid grid-cols-2'>

@@ -22,9 +22,12 @@ function Header() {
     className="navbar bg-[#131921] ">
   <div 
   className="flex-1">
+    <Link to='/'>
     <img 
     className='h-8 m-2' 
     src={AMAZON_LOGO}/>
+    </Link>
+    
   </div>
   <div 
   className="flex-none gap-2">

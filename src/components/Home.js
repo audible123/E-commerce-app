@@ -69,9 +69,9 @@ function Home() {
       </h1>
       <div className="flex flex-wrap justify-evenly">
         {result && result.map((item) => (
-          <Link to={"/" + item?.id} key={item?.id}>
+          <div key={item?.id}>
             <ProductCard {...item} />
-          </Link>
+          </div>
         ))}
       </div>
     </div>

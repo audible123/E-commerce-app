@@ -14,8 +14,8 @@ const useTotalPrice = (items) => {
       const fakePrice = 251;
   
       for (let i = 0; i < items.length; i++) {
-        if (items[i]?.defaultPrice) {
-          sum += items[i]?.defaultPrice / 100;
+        if (items[i]?.price) {
+          sum += items[i]?.price ;
         } else {
           sum += fakePrice;
         }

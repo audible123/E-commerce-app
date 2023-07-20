@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
-
+ 
 
 const SignUP = () => {
   const [email, setEmail] = useState("");
@@ -54,7 +54,7 @@ const SignUP = () => {
           type='email' 
           value={email}
           placeholder="Enter your email"
-          className="shadow-xl"
+          className="shadow-xl bg-white"
           required
           onChange={e => setEmail(e.target.value)}/>
 
@@ -62,7 +62,7 @@ const SignUP = () => {
           type='email' 
           value={email}
           placeholder="Enter your email"
-          className="shadow-xl"
+          className="shadow-xl bg-white"
           required
           onChange={e => setEmail(e.target.value)}/>
 
@@ -70,14 +70,14 @@ const SignUP = () => {
           type='password'
           value={password} 
           required
-          className="shadow-xl"
+          className="shadow-xl bg-white"
           placeholder='Enter your password'
           onChange={e => setPassword(e.target.value)}/>
 
           <input 
           type='password'
           value={confirmPassword} 
-          className="shadow-xl"
+          className="shadow-xl bg-white"
           required
           placeholder='Confirm password'
           onChange={e => setConfirmPassword(e.target.value)}/>

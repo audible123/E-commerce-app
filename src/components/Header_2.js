@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toggleMenu } from '../utils/ClickSlice';
 import { useSelector } from 'react-redux';
+import { useRef } from 'react';
+import useTotalPrice from '../utils/useTotalPrice';
 
 function Header_2() {
 
@@ -11,6 +13,8 @@ function Header_2() {
 
 
     const data = useSelector((store) => store.cart.item)
+
+    const value = useTotalPrice(data);
 
 
     const handleClick = () => {
@@ -110,7 +114,7 @@ function Header_2() {
           <span 
           className="font-bold text-lg">{data.length}</span>
           <span 
-          className="text-info">Subtotal: $999</span>
+          className="text-info">$ {value}</span>
           <div 
           className="card-actions">
             <Link to="/cart"><button 

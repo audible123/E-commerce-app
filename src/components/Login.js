@@ -37,7 +37,7 @@ const Login =()=>{
     <div 
     className='page flex justify-center items-center h-[100vh]'>
         <div 
-        className='auth shadow-2xl h-auto bg-white'>
+        className='auth shadow-2xl h-auto bg-gray-200'>
             <h1 className="font-bold text-2xl">Login</h1>
             {error && <div className="auth__error">{error}</div>}
 
@@ -49,7 +49,7 @@ const Login =()=>{
                 value={email}
                 placeholder="Enter your Email"
                 required
-                className="shadow-xl"
+                className="shadow-xl bg-white"
                 onChange={(e)=> setEmail(e.target.value)}
                 />
 
@@ -57,7 +57,7 @@ const Login =()=>{
                 type="password"
                 value={password}
                 placeholder="enter your password"
-                className="shadow-xl"
+                className="shadow-xl bg-white"
                 onChange={(e)=> setPassword(e.target.value)}/>
 
                 <button 

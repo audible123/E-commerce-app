@@ -1,4 +1,7 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../utils/CartSlice';
+import { Link } from 'react-router-dom';
 
 
 function Data ( {
@@ -38,14 +41,26 @@ function Data ( {
 
 
 function ProductCard(props) {
+
+  const dispatch = useDispatch();
+
+  function handleCart(props){
+      dispatch(addItem(props));
+  }
+
   return (
     <div
     className="card w-52 m-2 h-96 bg-neutral-content text-black relative shadow-2xl ">
+    
+    <Link to={"/" + props?.id}>
     <Data {...props}/>
+    </Link>
+    
     <div 
     className="card-actions justify-end">
 
-      <button 
+      <button
+      onClick={()=> {handleCart(props)}} 
       className="btn btn-primary absolute right-0 bottom-0"
       >Buy Now</button>
     </div>
